@@ -1,0 +1,1 @@
+This directory acts as a buffer to hold pdf to image pages before tesseract extracts textual content. 

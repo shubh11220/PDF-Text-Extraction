@@ -1,5 +1,3 @@
-from nltk.util import pr
-from numpy.core.fromnumeric import diagonal, resize
 from pdf2image import convert_from_path
 import cv2
 import numpy as np
@@ -114,4 +112,4 @@ end = time.time()
 print(" ")
 print("start time  : "+ str(start))
 print("end time    : "+ str(end))
-print("time elapsed: "+ str(end - start))
+print("time elapsed: "+ str(end - start)) 

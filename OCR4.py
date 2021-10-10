@@ -80,7 +80,7 @@ def Image2Text(img):
 # ---------------------------------------------------Converting Pdf to Jpg------------------------------------------------------------
 
 
-pages = convert_from_path(path_pdf, 500)  # converts pdf into set of images
+pages = convert_from_path(path_pdf, 750)  # converts pdf into set of images
 count = 0
 corrected_document_text = []
 start = time.time()

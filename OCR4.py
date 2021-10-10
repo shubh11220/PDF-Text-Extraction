@@ -6,8 +6,8 @@ from PIL import Image
 from textblob import TextBlob
 import time
 
+# the line below can be commented out if you have tesseract added to your PATH. If not, then include the line below.
 tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
 
 # path_pdf = r'D:\Projects\Projects\Dell hackathon\OCR_V1\pdfs\wordpress-pdf-invoice-plugin-sample.pdf '
 # path_pdf = r'D:\Projects\Projects\Dell hackathon\OCR_V1\pdfs\Invoice_TM-0005(signed).pdf'
@@ -61,7 +61,7 @@ def Image2Text(img):
 
     i = 0
     new_gray = gray
-    # ------------------------------extaction of contours and then text-----------------------------------
+    # ------------------------------extraction of contours and then text-----------------------------------
     while i < len1:
         x1, y1, x2, y2 = coordinates(cnts[i])
         cropped = new_gray[y1:y2, x1:x2]  # a text concentrated section of the cropped
@@ -77,7 +77,7 @@ def Image2Text(img):
     return img_txt
 
 
-# ---------------------------------------------------Converting Pdf to Jpg------------------------------------------------------------
+# ------------------------------------------------pdf to jpg---------------------------------
 
 
 pages = convert_from_path(path_pdf, 750)  # converts pdf into set of images
@@ -91,13 +91,14 @@ for page in pages:
     open_cv_image = np.array(pil_image)
     image = cv2.cvtColor(open_cv_image, cv2.COLOR_RGB2BGR)
 
-    # --------------------------------------------getting text from image------------------------
+    # -------------------------------------------getting text from image------------------------
 
     document_text = Image2Text(image)
     corrected_document_text = TextBlob(document_text)  # spellchecker
 
     content = content + str(corrected_document_text)
-# ------------------------------------------------Saving it in a text file------------------------------
+
+# -----------------------------------------------saving it in a text file------------------------------
 text_file = open("data.txt", "w")
 n = text_file.write(content)
 text_file.close()
@@ -105,6 +106,6 @@ text_file.close()
 end = time.time()
 
 print(" ")
-print("start time  : " + str(start))
-print("end time    : " + str(end))
+# print("start time  : " + str(start))
+# print("end time    : " + str(end))
 print("time elapsed: " + str(end - start))

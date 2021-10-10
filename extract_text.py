@@ -14,7 +14,7 @@ start_time = time.time()
 
 DIRECTORY_PATH = r'C:\Users\Shubhankar\Desktop\PDF_Text_Recognition'
 PDF_PATH = DIRECTORY_PATH + r'\test_files\test3.pdf'
-PAGES = convert_from_path(PDF_PATH, 250)
+PAGES = convert_from_path(PDF_PATH, 500)
 
 i = 0
 for p in PAGES:

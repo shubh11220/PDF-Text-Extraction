@@ -11,7 +11,7 @@ tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # path_pdf = r'D:\Projects\Projects\Dell hackathon\OCR_V1\pdfs\wordpress-pdf-invoice-plugin-sample.pdf '
 # path_pdf = r'D:\Projects\Projects\Dell hackathon\OCR_V1\pdfs\Invoice_TM-0005(signed).pdf'
-path_pdf = r'C:\Users\Shubhankar\Desktop\PDF_Text_Recognition\test_files\test1.pdf'
+path_pdf = r'C:\Users\Shubhankar\Desktop\PDF_Text_Recognition\test_files\test3.pdf'
 
 
 # gives coordinates of text boxes

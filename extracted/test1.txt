@@ -1,0 +1,53 @@
+QTy DESCRIPTION UNIT PRICE AMOUNT
+1 Front and rear brake cables 100.00 100.00
+2 New set of pedal arms 15.00 30.00
+3 Labor Shrs 5.00 15.00
+Subtotal 145.00
+Sales Tax 6.25% 9.06
+TOTAL $154.06
+
+fins
+
+Ship To
+
+John Smith
+
+3787 Pineview Drive
+Cambridge, MA 12210
+
+Bill To
+
+John Smith
+
+2 Court Square
+
+New York, NY 12210
+
+Terms & Conditions
+Payment is due within 15 days
+
+Please make checks payable to: East Repair Inc.
+
+1912 Harvest Lane
+New York, NY 12210
+
+East Repair Inc.
+
+INVOICE
+
+Invoice Date
+
+26/02/2019
+
+11/02/2019
+
+2312/2019
+
+Invoice #
+
+Due Date
+
+US-001
+
+P.O.#
+

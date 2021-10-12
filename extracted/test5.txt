@@ -1,0 +1,77 @@
+Faculty of Engineering
+School of Computing and IT
+Department of CSE
+V SEM. B.Tech.
+Odd Semester Mid Term-| Examination 2021-22
+CS3101 Artificial Intelligence & Soft Computing
+
+Choose and apply most efficient search algorithm in the given scenario
+Give example of possible heuristic for the given problem. How heuristic
+can be used to solve this problem
+
+Identify suitable problem related to Manipal University Jaipur. With
+reference to the identified problem answer the following:
+
+[Hint: Find the shortest path to reach cafeteria from the MUJ gate.
+PS: Hint can not be taken as problem or part of problem]
+
+Demonstrate knowledge representation by taking an example from the
+defined problem and convert into prepositional logic.
+
+Instructions to Candidates
+e All assumptions and dependencies should be clearly stated
+e Problem should be precisely defined
+
+[ Reg.No ~ | smi 7 mem ss r si r i T vn r si t vi ;
+
+dtr: MANIPAL UNIVERSITY
+‘age JAIPUR
+
+HR AKRK ERIK RRR KIRK IKK ERK EEK RR ERK AN UY the Best * 84 FERRARA RRR EERIE RI KR HK HR RR KEK RE IIE
+
+Define its Environment and State Space for the problem
+
+MAX.MARKS: 20
+
+Question Script
+
+
+Page | of 1
+
+Q. No.
+
+Marks
+
+Time:
+
+CO2
+
+C02
+
+CO3
+
+Col
+
+Col
+
+D)
+
+B)
+
+C)
+
+A)
+
+2
+
+3
+
+5
+
+5
+
+5
+
+1
+
+

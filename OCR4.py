@@ -6,6 +6,8 @@ from PIL import Image
 from textblob import TextBlob
 import time
 
+start = time.time()
+
 # the line below can be commented out if you have tesseract added to your PATH. If not, then include the line below.
 tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -28,7 +30,7 @@ def coordinates(arr):
 def Image2Text(img):
     img_txt = ''
     gap = "\n"
-    resize_val = 1000
+    resize_val = 2000
     kernel_size = 9
     (h, w, d) = img.shape
 
@@ -80,10 +82,9 @@ def Image2Text(img):
 # ------------------------------------------------pdf to jpg---------------------------------
 
 
-pages = convert_from_path(path_pdf, 750)  # converts pdf into set of images
+pages = convert_from_path(path_pdf, 300, fmt='png')  # converts pdf into set of images
 count = 0
 corrected_document_text = []
-start = time.time()
 content = ''
 for page in pages:
     count += 1

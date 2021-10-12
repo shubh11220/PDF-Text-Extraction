@@ -122,12 +122,12 @@ def execute(path_pdf, name):
 #     execute(filepath, filename)
 
 
-with concurrent.futures.ProcessPoolExecutor() as executor:
-    if __name__ == '__main__':
-        for filename in os.listdir(dpath):
-            filepath = dpath + '\\' + filename
-            executor.submit(execute, filepath, filename)
-            # print(filepath)
+# with concurrent.futures.ProcessPoolExecutor() as executor:
+#     if __name__ == '__main__':
+#         for filename in os.listdir(dpath):
+#             filepath = dpath + '\\' + filename
+#             executor.submit(execute, filepath, filename)
+#             # print(filepath)
 
 processes = []
 for filename in os.listdir(dpath):

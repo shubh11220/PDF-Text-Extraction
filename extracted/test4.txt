@@ -20,7 +20,7 @@ Page 1/1
 From:
 
 DEMO - Sliced Invoices
-Suite 54-1204
+Suite 5A-1204
 
 123 Somewhere Street
 Your City AZ 12345
@@ -35,7 +35,7 @@ Test Business
 Melbourne, VIC 3000
 test@test.com
 
-© ced mvoices
+GS Shiced invoices
 
 ANZ Bank
 ACC # 1234 1234

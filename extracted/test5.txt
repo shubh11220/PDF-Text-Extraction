@@ -2,8 +2,8 @@ Faculty of Engineering
 School of Computing and IT
 Department of CSE
 V SEM. B.Tech.
-Odd Semester Mid Term-| Examination 2021-22
-CS3101 Artificial Intelligence & Soft Computing
+Odd Semester Mid Term-I Examination 2021-22
+C3$3101 Artificial Intelligence & Soft Computing
 
 Choose and apply most efficient search algorithm in the given scenario
 Give example of possible heuristic for the given problem. How heuristic
@@ -22,12 +22,12 @@ Instructions to Candidates
 e All assumptions and dependencies should be clearly stated
 e Problem should be precisely defined
 
-[ Reg.No ~ | smi 7 mem ss r si r i T vn r si t vi ;
+PRegNo, 0
 
-dtr: MANIPAL UNIVERSITY
-ëage JAIPUR
+ÈTrr% MANIPAL UNIVERSITY
+nahi JAIPUR
 
-HR AKRK ERIK RRR KIRK IKK ERK EEK RR ERK AN UY the Best * 84 FERRARA RRR EERIE RI KR HK HR RR KEK RE IIE
+FAH KIR ARIE HII RRR EKER RIE RE RERER EEE AN YY the Best eet ee RARE REAR R RRR R RRR IIIT RII RRR IR EK
 
 Define its Environment and State Space for the problem
 
@@ -46,7 +46,7 @@ Time:
 
 CO2
 
-C02
+CO2
 
 CO3
 
@@ -56,11 +56,11 @@ Col
 
 D)
 
-B)
-
 C)
 
 A)
+
+B)
 
 2
 

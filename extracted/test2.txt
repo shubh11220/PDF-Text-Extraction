@@ -1,9 +1,9 @@
-1. | Why dual mode CPU operation is necessary for secure functioning of operating [3]
+1. Why dual mode CPU operation is necessary for secure functioning of operating [3]
 system? Explain.
 2. For each of the process state transitions given below, specify whether it is possible [4]
 or not? If possible, give any two examples for that process state transition.
 (a) Running to Ready
-(b) Blocking to Running
+(b} Blocking to Running
 (c) Running to Blocking
 (d) Blocking to Ready
 3. | Write a program in ‘C’ using two pipes and three processes (parent-child relationship [5]
@@ -15,6 +15,7 @@ from pipe 1, counts the number of characters (file size in bytes) and displays t
 count on the monitor.
 
 Pipe 1 \Pipe 1
+Cm) ~ Com
 
 Faculty of Engineering
 School of Computing & Information Technology
@@ -22,17 +23,17 @@ Department of Computer Science and Engineering
 IV Semester B.Tech.
 Mid-Term-I Examination: 2020-21
 CS2201: Operating Systems
-(CLOSED BOOk)
+(CLOSED BOOK)
 
 Instructions:
 
 e Answer all the questions.
 
-¢ Missing data, if any, may be assumed suitably.
+e Missing data, if any, may be assumed suitably.
 e Calculator is allowed.
 
-aitr: MANIPAL UNIVERSITY
-“ae PAIPUR
+SIT: MANIPAL. UINIVERSITY
+See PAIPUR
 
 Duration: 1 Hours
 
@@ -48,7 +49,7 @@ main () {
 
 if (fork () && fork ())
 
-if (fork () | | fork (})
+if (fork () | | fork ())
 
 fork ();
 
@@ -71,17 +72,17 @@ P4 6 3 2
 P5 8 4 2
 P6 7 5 4
 P7 8 6 4
-P8& 3 7 1
+P8 3 7 1
 
-aitr: MANIPAL UNIVERSITY
-“ae PAIPUR
-
-
+SIT: MANIPAL. UINIVERSITY
+See PAIPUR
 
 
-[5]
+
 
 [3]
+
+[5]
 
 5.
 

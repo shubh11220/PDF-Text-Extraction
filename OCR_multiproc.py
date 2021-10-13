@@ -14,6 +14,8 @@ tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 start = time.time()
 
 dpath = r"C:\Users\Shubhankar\Desktop\PDF_Text_Recognition\temp"
+
+
 # l = os.listdir(dpath)  # dpath is your directory path
 # number_files = len(l)
 
@@ -47,7 +49,6 @@ def Image2Text(img):
     dim = (resize_val, int(h * r))
     resized = cv2.resize(img, dim)
     temp = resized
-    resized = img
     img = temp
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -88,7 +89,7 @@ def Image2Text(img):
 # ------------------------------------------------pdf to jpg---------------------------------
 
 def execute(path_pdf, name):
-    pages = convert_from_path(path_pdf, 300, fmt='png')  # converts pdf into set of images
+    pages = convert_from_path(path_pdf, 450, fmt='png')  # converts pdf into set of images
     count = 0
     content = ''
     for page in pages:
@@ -120,6 +121,9 @@ def execute(path_pdf, name):
 # for filename in os.listdir(dpath):
 #     filepath = dpath + '\\' + filename
 #     execute(filepath, filename)
+#
+# end = time.time()
+# print("time elapsed: " + str(end - start))
 
 
 # with concurrent.futures.ProcessPoolExecutor() as executor:
@@ -129,16 +133,18 @@ def execute(path_pdf, name):
 #             executor.submit(execute, filepath, filename)
 #             # print(filepath)
 
-processes = []
-for filename in os.listdir(dpath):
-    if __name__ == '__main__':
+
+if __name__ == '__main__':
+    processes = []
+    for filename in os.listdir(dpath):
         filepath = dpath + '\\' + filename
         p = multiprocessing.Process(target=execute, args=(filepath, filename))
         p.start()
         processes.append(p)
 
-for process in processes:
-    process.join()
+    for process in processes:
+        process.join()
+    end = time.time()
+    print("time elapsed: " + str(end - start))
 
-end = time.time()
-print("time elapsed: " + str(end - start))
+

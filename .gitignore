@@ -1,3 +1,5 @@
 /.idea
-/test_files
 /data.txt
+/temp
+/extracted
+/test.py

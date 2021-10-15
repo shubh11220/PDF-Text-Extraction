@@ -36,14 +36,14 @@ def Image2Text(img):
 
     # ---------------------------------------Image Preprocessing-------------------------------------
 
-    # resize_val = 1000
-    # (h, w, d) = img.shape
-    # # resizing the image to reduce size
-    # r = resize_val / w
-    # dim = (resize_val, int(h * r))
-    # resized = cv2.resize(img, dim)
-    # temp = resized
-    # img = temp
+    resize_val = 1000
+    (h, w, d) = img.shape
+    # resizing the image to reduce size
+    r = resize_val / w
+    dim = (resize_val, int(h * r))
+    resized = cv2.resize(img, dim)
+    temp = resized
+    img = temp
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)

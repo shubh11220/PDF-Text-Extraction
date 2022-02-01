@@ -1,0 +1,182 @@
+﻿PDF Data Extraction
+(Shubhankar Singh, Swar Shah, Deepika Garg, Deepeksh Gupta)
+
+
+* 1.0 General Description
+   * The data boom and mass digital-sensitization post the late 2010s brought with it an imminent need to digitize data and make it readily accessible to businesses and organizations. Today, access to data in electronic form is critical to a business' workflow. Although most businesses have switched to an online model of data extraction, there is a massive chunk who haven't. There is also the task of digitizing old archival data in the form of physical invoices, bills and other paperwork. In most mid to small scale organizations, this task is being done manually, with a human typing relevant data into the system. Data extraction engines do exist which extract text from image data, but most of them do not possess a method to parse the same into a structured and usable format.
+
+   * The objective of this project is to create a data extraction platform for users to conveniently obtain data in a structured format from uploaded files (mainly invoices, bills and other documents). The user would be required to upload a scanned pdf(s) of a document to the platform. Ideally, the platform would process the uploaded document, mark regions of interest in the processed file and then proceed to extract text from it using an OCR (Optical Character Recognition) Engine. Finally, it would parse the extracted text to structure the data into a JSON file, which would be sent back to the user to download.
+   * 1.1 How the program is structured:
+   * The front-end is the interface through which the user uploads the pdf document(s) and then post-extraction, downloads the JSON file for the same.
+   * Once the documents are uploaded to the server, the program which inculcates the use of parallelism, creates a child process for each file uploaded and proceeds.
+   * Each document is converted to a set of images and this set is then iterated over to pre-process the image. Pre-processing the image reduces it to a more manageable size, converts the image to grayscale and applies filters to reduce noise and detect edges in the image.
+   * Each of the processed images are then passed through a contour detection script to detect regions of interest in the image.
+   * Each detected region of interest is then iterated over and made to undergo the text extraction process through the OCR Engine.
+   * This returns a .txt file of all extracted text which is then sent over to the parsing code segment
+   * The text file is then parsed using regular expressions which returns all the pre defined keys with their values parsed using the program.
+   * The key value pairs are subsequently formatted into a JSON object and sent over to the API.
+
+
+1.2 Program Flow
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   * 2.0 Multiprocessing Segment
+   * The core conversion segment of the program is a CPU-Bound Process. This allows for the program to undergo parallelism to maximize CPU-Core Performance. This is implemented using Python's Multiprocessing module.
+   * A for-loop iterates over the PDF files in the server directory wherein the uploaded PDF documents are temporarily stored. The multiprocessing module functions then create subsequent processes which proceed with the execution.
+   * 2.1 Why use multiprocessing? 
+   *   ** **
+
+      * In Python, single-CPU use is caused by the Global Interpreter Lock (the GIL), which allows only one thread to carry the Python interpreter at a time. Therefore, Python is limited to using a single processor.
+      * Python’s built-in multiprocessing module allows us to take advantage of multiple processors in a system by designating certain sections of code to bypass the GIL and send the code to multiple processors for simultaneous execution.
+      *   
+         * 2.2 Test
+         * In a test, where an initial build of the program was tasked with extracting information from 35 PDFs:
+         * Executing the program without multi-processing led to the following results.
+
+
+         *   
+            * Total execution time for the program was 320 seconds, the CPU averages at 28% utilization.
+
+
+            * Using multiprocessing the execution time was reduced to 116 seconds, the CPU averages at 98% utilization.
+            *   
+
+
+
+
+               * 3.0 PDF To Image and Image Pre-Processing
+               * Python is widely used for analyzing the data but the data need not be in the required format always. For this PDF automation website, we need the format to be PDF. In order to analyze the data, we need to convert the PDF to a text format. Python offers many libraries to do this task.
+
+               * 3.1 PDF To Images
+                  * The working of the OCR (Optical Character Recognition) starts from the execute function which requires the file path and file name of the PDF. It starts by converting the PDFs into a list of PIL images.
+                  * Next, we iterate through this list and convert each image from PIL image to NumPy array which OpenCV can accept.
+                  * Then we call the Image2Text function. It takes in this NumPy array as its argument and stores the string it returns in a variable.
+                  * This process is repeated for all the pages in the PDF and we concatenate the strings returned from Image2Text function in another string.
+                  * We save the extracted string in a .txt file and use the file name as the name of the text file.
+                  * Lastly, the original PDF is deleted from the file path to free the memory.
+                  * 3.2 Image Pre-Processing
+                  * Image Pre-Processing is done mainly by applying OpenCV filters on the images to reduce noise, enhance textual content and
+                  * The image obtained is now pre-processed before text detection to reduce the file size and the excess noise.
+                  * First, the image is converted from a 3-channel BGR to a 1-channel Grayscale image to reduce the file size. The conversion yields the following image :
+                  * 
+                     * Next, the Gaussian Blur filter is applied to reduce unwanted noise from the image.
+                     * 
+                        * The Canny edge detection is then used to get the edges (texts and table structure) from the image.
+                        *   
+                           * Lastly, getStructuringElement and dilate is used to merge nearby contours so that nearby text or table elements can be merged and treated as one, rather than separate entities. This will be used in contour detection.
+                           *   
+                              * 4.0 Box-Optimization and Text-Extraction
+                              * 4.1 Box Optimization
+                              * Box optimization is required so that our OCR only focuses its resources on regions that have a higher concentration of texts or tables rather than the entire image, this saves resources and improves accuracy and speed.
+                              * Using the ROIs from the contour detection code segment, we use the coordinates function to get the maximum and minimum x and y coordinates.
+                              * This gives us the two coordinates required to form a rectangle/box around the concentrated regions of the image.
+                              *                                    * Boxes around ROIs
+                                 * 4.2 Text-Extraction
+                                 * The text-extraction engine used in the project is Google's Tesseract Which is an OCR engine with support for Unicode. It can also be trained to recognize other languages.
+
+                                 * Now that we have the rectangular coordinates of our ROI, we can crop that region out of the image so that we only focus on this region of the original image.
+                                 * we use the inRange() function to binarize the image. This helps in text detection as it further reduces unwanted noise.
+                                 * Now we use the image_to_string() function of tesseract to convert the image into string format.
+                                    * Here we set our parameters as:
+                                    * Lang = 'eng'
+                                    * Assuming all the documents will be written in English language
+                                    * config='--psm 6 -c tessedit_char_blacklist=[]|'
+                                    * --psm 6 means image will be treated as a single block of text
+                                    * -c tessedit_char_blacklist=[]| removes these specific characters from detection
+                                    * We choose these as table cell boxes were often detected as “[] and |"
+                                    * Now we concatenate all the strings detected to the previous string so as to get all the text from different ROIs of the image.
+                                    * Finally, we remove the rectangular box from the original image so that it won’t be detected again.
+                                    * This is where sorting plays an important role:
+                                    * As the largest contour is removed first, it also removes all the smaller possible contours that might be present there.
+                                    * This is important because text from all the smaller contours was already detected and extracted in the larger contour, thus not removing them would mean detecting that text once again which would be inefficient and also give us repeated values in the string parsing phase which happens after text detection.
+                                    * The steps in the Box optimization and Text extraction are looped until all the ROIs have been processed.
+                                    * We now strip all the unnecessary ‘’s from the text and return the final string.
+                                    *      
+
+                                    *      
+
+                                    *      
+
+                                    *      
+
+                                    *      
+
+                                    *      
+
+                                    *      
+
+                                       * 5.0 String Parsing
+                                       * The text extracted from the PDFs using OCR is raw and has a lot of unnecessary information. Hence we will be parsing all the necessary fields from the obtained text and serve it to the user in a key value pair text file.
+
+                                       * 5.1 Sample
+                                          *   
+                                          *   
+                                             * Problems
+                                             * Problem 1: There are infinite number formats of PDF which the OCR can extract text from. Regular expressions, on the other hand are used for extracting regular or as we say, formatted data. Hence the main problem was to extract data from irregular text file using regular expressions.
+                                             * Solution: The solution we came up with was predefining keys like date, phone numbers, email addresses, invoice numbers and many more (21 actually) and finding their values from the PDFs getting processed.
+                                             * Problem 2: The other problem was that every key can have value in any format. For example, the invoice number (key) can be present in forms like :
+                                             * Invoice Number: INV-3337
+                                             * Invoice # INV-3337
+                                             * Invoice num – 3337
+                                             * Solution : Hence, we wrote our parsing rules in such a way that every key can extract the maximum number of its formats. For example, the part of our code extracting issue date :
+                                             *   
+                                                * Date - 01/01/2021, Date – 01 January 2021, Date – January 1, 2021
+                                                * Date of issue - 01/01/2021, Date of issue – 01 January 2021, Date of issue – January 1, 2021
+                                                * Invoice Date - 01/01/2021, Invoice Date – 01 January 2021, Invoice Date – January 1, 2021
+                                                * Currently the data extractor can extract predefined fields and number of it's formats.
+                                                * 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6.0 Back-End Flow & Returning Data
+
+
+                                                * The JSON values returned by the parser are then returned by the API. The website receives the data from API and iterates over it to convert it to a .txt file containing the data of the pdfs given.
+                                                * A final .txt file can then be downloaded by the user.
+                                                *   
+
+
+
+
+
+                                                   *
